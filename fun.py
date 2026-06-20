@@ -1,3 +1,10 @@
+from google import genai
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
 def my_chatbot_response(user_input):
     if "hello" in user_input.lower():
         return "Hello! How can I assist you today?"
@@ -17,3 +24,15 @@ def my_chatbot_response(user_input):
         return "Why don't scientists trust atoms? Because they make up everything!"
     else:
         return "I'm sorry, I don't understand that. Can you please rephrase?"
+    
+
+
+def gemini_chatbot_response(user_input):
+
+    client = genai.Client(api_key=GEMINI_API_KEY)
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=user_input
+    )
+    return response.text
+    
