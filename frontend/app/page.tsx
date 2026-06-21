@@ -110,7 +110,7 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  };
+  }; 
 
   const clearChat = () => {
     if (confirm('Are you sure you want to clear all messages?')) {
