@@ -339,64 +339,6 @@ export default function Home() {
     </div>
   );
 }
-
-interface Message {
-  id: string;
-  text: string;
-  sender: 'user' | 'bot';
-  timestamp: Date;
-}
-
-export default function Home() {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  // Load messages from localStorage on mount
-  useEffect(() => {
-    const saved = localStorage.getItem('chatMessages');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        setMessages(parsed.map((msg: any) => ({
-          ...msg,
-          timestamp: new Date(msg.timestamp),
-        })));
-      } catch (e) {
-        console.error('Failed to load messages:', e);
-      }
-    } else {
-      // Initial greeting if no chat history
-      setMessages([
-        {
-          id: '1',
-          text: '👋 Hi! I\'m Justin\'s AI Assistant. I\'m here to help with any questions you have. Feel free to ask me anything!',
-          sender: 'bot',
-          timestamp: new Date(),
-        },
-      ]);
-    }
-  }, []);
-
-  // Save messages to localStorage
-  useEffect(() => {
-    if (messages.length > 0) {
-      localStorage.setItem('chatMessages', JSON.stringify(messages));
-    }
-  }, [messages]);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages, loading]);
-
-  const sendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
     
     if (!input.trim()) return;
 
