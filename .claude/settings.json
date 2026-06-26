@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue)",
+      "PowerShell(netstat -ano)",
+      "PowerShell(Stop-Process -Id 23804 -Force)",
+      "Bash(curl -sv http://localhost:3000)",
+      "Bash(curl -s http://172.26.0.1:3000)",
+      "PowerShell(Get-Job)",
+      "PowerShell(Receive-Job -Id 1 -Keep 2>&1)"
+    ]
+  }
+}
