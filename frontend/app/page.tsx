@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Send, Trash2, Loader, Settings } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 interface Message {
   id: string;
@@ -218,7 +219,13 @@ export default function Home() {
                       : 'bg-gradient-to-r from-gray-800 to-gray-700 text-gray-100 rounded-bl-none border border-gray-600/50'
                   }`}
                 >
-                  <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">{message.text}</p>
+                  {message.sender === 'bot' ? (
+                    <div className="text-sm leading-relaxed prose prose-invert prose-sm max-w-none">
+                      <ReactMarkdown>{message.text}</ReactMarkdown>
+                    </div>
+                  ) : (
+                    <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">{message.text}</p>
+                  )}
                   <p
                     className={`text-xs mt-2 font-medium ${
                       message.sender === 'user'
