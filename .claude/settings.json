@@ -7,7 +7,10 @@
       "Bash(curl -sv http://localhost:3000)",
       "Bash(curl -s http://172.26.0.1:3000)",
       "PowerShell(Get-Job)",
-      "PowerShell(Receive-Job -Id 1 -Keep 2>&1)"
+      "PowerShell(Receive-Job -Id 1 -Keep 2>&1)",
+      "Bash(git checkout *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
